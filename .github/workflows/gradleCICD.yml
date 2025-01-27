@@ -47,6 +47,7 @@ jobs:
       - name: Build with gradle
         run: |
           echo "Build with gradle"
+          echo "${{ env.BUILD_CMD }}"
           ${{ env.BUILD_CMD }}
   post_action:
     needs: build
