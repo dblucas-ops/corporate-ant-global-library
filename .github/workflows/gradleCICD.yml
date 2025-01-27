@@ -44,9 +44,9 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: dblucas-ops/${{ env.CALLER_REPO }}
-      - name: Build with npm
+      - name: Build with gradle
         run: |
-          echo "Build with npm"
+          echo "Build with gradle"
           ${{ env.BUILD_CMD }}
   post_action:
     needs: build
