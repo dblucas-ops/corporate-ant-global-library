@@ -1,4 +1,4 @@
-name: Gradle Action Workflow DBL
+name: Gradle Action Workflow DBL 
 on:
   workflow_call:
     inputs:
