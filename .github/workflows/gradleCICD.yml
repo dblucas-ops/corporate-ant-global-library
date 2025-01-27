@@ -1,1 +1,58 @@
-23214334
+name: Maven Action Workflow DBL
+on:
+  workflow_call:
+    inputs:
+      callerRepo:
+        description: "callerRepo"
+        required: true
+        type: string
+      buildCmd:
+        description: "buildCmd"
+        required: true
+        type: string
+      branchName:
+        description: "branchName"
+        required: true
+        type: string
+env:
+  MY_CONTEXT: "Local variable: File scope to all jobs within the yml file"
+  CALLER_REPO: ${{ inputs.callerRepo }}
+  BUILD_CMD: ${{ inputs.buildCmd }}
+  BRANCH_NAME: ${{ inputs.branchName }}
+jobs:
+  init:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Initialization
+        id: vars
+        run: |
+          echo "Initialization and Configuration:"
+          echo "$(date +'%Y-%m-%d %H:%M:%S')"
+  codeql:
+    needs: init
+    runs-on: ubuntu-latest
+    steps:
+      - name: CODEQL Running
+        run: |
+          echo "CODEQL Code Scan Running: Open 'Push on main' job output"
+          echo "$(date +'%Y-%m-%d %H:%M:%S')"
+  build:
+    needs: codeql
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          repository: dblucas-ops/${{ env.CALLER_REPO }}
+      - name: Build with npm
+        run: |
+          echo "Build with npm"
+          ${{ env.BUILD_CMD }}
+  post_action:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Post Action Running
+        run: |
+          echo "Post Action..."
+          echo "$(date +'%Y-%m-%d %H:%M:%S')"
