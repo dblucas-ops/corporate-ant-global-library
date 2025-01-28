@@ -1,4 +1,4 @@
-name: Gradle Action Workflow
+name: Ant Action Workflow
 on:
   workflow_call:
     inputs:
@@ -44,9 +44,9 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: dblucas-ops/${{ env.CALLER_REPO }}
-      - name: Build with gradle
+      - name: Build with ant
         run: |
-          echo "Build with gradle"
+          echo "Build with ant"
           echo "${{ env.BUILD_CMD }}"
           ${{ env.BUILD_CMD }}
   post_action:
