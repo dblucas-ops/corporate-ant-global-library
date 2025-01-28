@@ -46,7 +46,7 @@ jobs:
           repository: dblucas-ops/${{ env.CALLER_REPO }}
       - name: Build with ant
         run: |
-          echo "Build with ant"
+          echo "Build with ant "
           echo "${{ env.BUILD_CMD }}"
           ls -la
           pwd
