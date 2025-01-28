@@ -48,6 +48,8 @@ jobs:
         run: |
           echo "Build with ant"
           echo "${{ env.BUILD_CMD }}"
+          ls -la
+          pwd
           ${{ env.BUILD_CMD }}
   post_action:
     needs: build
